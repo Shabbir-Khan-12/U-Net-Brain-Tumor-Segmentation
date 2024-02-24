@@ -47,6 +47,18 @@ class ModelPrediction:
 
         # Save image to media storage
         image_path = f"\images\{uuid.uuid4()}.png"
+
+        # Use glob to find all .png files in the directory
+        png_files = glob.glob(os.path.join(f'{settings.ML_MODEL_LOCATION}/images' , '*.png'))
+
+        # Loop through the list of .png files and remove each one
+        for file_path in png_files:
+            try:
+                os.remove(file_path)
+                print(f"Deleted {file_path}")
+            except Exception as e:
+                print(f"Error deleting {file_path}: {e}")
+                
         image.save(settings.MEDIA_ROOT + image_path)
         context = {"image_url": settings.MEDIA_ROOT + image_path}
 
