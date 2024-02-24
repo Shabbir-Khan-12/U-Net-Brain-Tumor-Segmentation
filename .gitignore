@@ -1,2 +1,4 @@
 env
 **/__pycache__
+**/unet.hdf
+**/unet.hdf5
